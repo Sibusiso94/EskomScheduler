@@ -11,13 +11,15 @@ import MapKit
 class ViewController: UIViewController, MKMapViewDelegate {
     
     let dp = DataProvider()
+    let sb = ScheduleBuilder()
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        sb.getAreas(name: "benoni")
 //        loadData()
-        dp.parseSchedule()
+//        dp.parseSchedule()
         
 //        let initialLocation = CLLocation(latitude: -26.112114859606447, longitude: 28.053238876727022)
        // -26.112114859606447, 28.053238876727022
@@ -90,12 +92,12 @@ class ViewController: UIViewController, MKMapViewDelegate {
 //    
     }
 
-    func loadData() {
-        let areaNames = dp.parseArea(areaName: "benoni")
-        for area in areaNames {
-            print(area.id)
-        }
-    }
+//    func loadData() {
+//        let areaNames = dp.parseArea(areaName: "benoni")
+//        for area in areaNames {
+//            print(area.id)
+//        }
+//    }
     
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {

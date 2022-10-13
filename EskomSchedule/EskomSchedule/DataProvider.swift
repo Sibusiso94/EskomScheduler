@@ -12,12 +12,12 @@ class DataProvider {
     
     var schedule: EskomSchedule? = nil
     var areaSearch: AreaSearch? = nil
+    var areaID: [Area] = []
     let tokenString = "yoqhWx01QSnV5gr9bpUg"
     
-    func parseArea(areaName: String) -> [Area] {
+    func parseArea(areaName: String, completion: @escaping () -> ()) {
 //        let trimmedUrl = getFood.trimmingCharacters(in: .whitespacesAndNewlines)
-        let urlArea = "https://developer.sepush.co.za/business/2.0/areas_search?text=benoni"
-        var areaID: [Area] = []
+        let urlArea = "https://developer.sepush.co.za/business/2.0/areas_search?text=\(areaName)"
         
         guard let url = URL(string: urlArea) else {
             fatalError("Invalid URL")
@@ -28,24 +28,23 @@ class DataProvider {
         request.setValue(tokenString, forHTTPHeaderField: "token")
 //        request.addValue("esp_token \(tokenString)", forHTTPHeaderField: "Authorization")
 
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { [self] data, response, error in
 
             guard let data = data else { return }
                 do {
-                    let decodedData = try JSONDecoder().decode(AreaSearch.self, from: data)
+                    self.areaSearch = try JSONDecoder().decode(AreaSearch.self, from: data)
                     
                     DispatchQueue.main.async {
-                        for area in decodedData.areas {
-                            areaID.append(area)
-                        }
-                        print(areaID)
+//                        for area in decodedData.areas {
+//                            self.areaID.append(area)
+//                        }
+                        completion()
                     }
                 } catch {
                     print("Error fetching data: \(error)")
                 }
             
         }.resume()
-        return areaID
     }
     
     func parseSchedule() {
