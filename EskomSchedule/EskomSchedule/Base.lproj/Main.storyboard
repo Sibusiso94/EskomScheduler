@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ixX-8W-U9u">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EskomSchedule" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,13 +29,65 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle" catalog="system" id="pRi-Zq-aDc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2" y="4"/>
+            <point key="canvasLocation" x="-309" y="4"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="AVB-27-QoK">
+            <objects>
+                <tabBarController id="ixX-8W-U9u" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GSg-Ap-MHX">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ekW-WM-lfa"/>
+                        <segue destination="Cw9-Qj-l4J" kind="relationship" relationship="viewControllers" id="s23-UD-vrD"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Yd-Pd-ThV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1029" y="4"/>
+        </scene>
+        <!--Map View-->
+        <scene sceneID="ROb-xH-fMl">
+            <objects>
+                <viewController id="Cw9-Qj-l4J" customClass="ViewController" customModule="eskomThing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="val-37-amZ">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJl-km-uGp">
+                                <rect key="frame" x="0.0" y="47" width="390" height="714"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Uyd-8C-eOq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Uyd-8C-eOq" firstAttribute="trailing" secondItem="MJl-km-uGp" secondAttribute="trailing" id="Ajc-7i-KIq"/>
+                            <constraint firstItem="Uyd-8C-eOq" firstAttribute="bottom" secondItem="MJl-km-uGp" secondAttribute="bottom" id="Jdb-iJ-nwb"/>
+                            <constraint firstItem="MJl-km-uGp" firstAttribute="top" secondItem="Uyd-8C-eOq" secondAttribute="top" id="KHv-jK-9iS"/>
+                            <constraint firstItem="MJl-km-uGp" firstAttribute="leading" secondItem="Uyd-8C-eOq" secondAttribute="leading" id="WVy-dC-6hO"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map View" image="map.circle" catalog="system" id="hvq-RU-kfd"/>
+                    <connections>
+                        <outlet property="mapView" destination="MJl-km-uGp" id="Una-N8-oI3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jlI-8s-BYd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="472" y="4"/>
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
+        <image name="map.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
