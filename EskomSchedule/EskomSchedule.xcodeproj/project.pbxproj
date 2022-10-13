@@ -11,6 +11,7 @@
 		5C79E37428F80F5A0027485F /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C79E37328F80F5A0027485F /* SearchController.swift */; };
 		5C79E37728F812180027485F /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C79E37528F812180027485F /* SearchCell.swift */; };
 		5C79E37828F812180027485F /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C79E37628F812180027485F /* SearchCell.xib */; };
+		5C79E37B28F8357B0027485F /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C79E37A28F8357B0027485F /* DatabaseHandler.swift */; };
 		5CCDA3EC28F5A00700220EC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA3EB28F5A00700220EC6 /* AppDelegate.swift */; };
 		5CCDA3EE28F5A00700220EC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA3ED28F5A00700220EC6 /* SceneDelegate.swift */; };
 		5CCDA3F028F5A00700220EC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA3EF28F5A00700220EC6 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 		5C79E37328F80F5A0027485F /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		5C79E37528F812180027485F /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		5C79E37628F812180027485F /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
+		5C79E37A28F8357B0027485F /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		5CCDA3E828F5A00700220EC6 /* EskomSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EskomSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CCDA3EB28F5A00700220EC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CCDA3ED28F5A00700220EC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C79E37928F835500027485F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5CCDA3F428F5A00700220EC6 /* EskomSchedule.xcdatamodeld */,
+				5CCDA40928F6A47D00220EC6 /* DataProvider.swift */,
+				5C79E37A28F8357B0027485F /* DatabaseHandler.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		5CCDA3DF28F5A00700220EC6 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +90,7 @@
 		5CCDA3EA28F5A00700220EC6 /* EskomSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				5C79E37928F835500027485F /* Data */,
 				5CCDA40428F5A86F00220EC6 /* Model */,
 				5CCDA3EB28F5A00700220EC6 /* AppDelegate.swift */,
 				5CCDA3ED28F5A00700220EC6 /* SceneDelegate.swift */,
@@ -86,10 +99,8 @@
 				5CCDA3F728F5A00900220EC6 /* Assets.xcassets */,
 				5CCDA3F928F5A00900220EC6 /* LaunchScreen.storyboard */,
 				5CCDA3FC28F5A00900220EC6 /* Info.plist */,
-				5CCDA3F428F5A00700220EC6 /* EskomSchedule.xcdatamodeld */,
 				5CCDA40728F69FB700220EC6 /* Data.swift */,
 				5CCDA40B28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json */,
-				5CCDA40928F6A47D00220EC6 /* DataProvider.swift */,
 				5CCDA40D28F6C30700220EC6 /* JSONData.json */,
 				5CCDA40F28F6FDE700220EC6 /* ScheduleBuilder.swift */,
 				5C79E37328F80F5A0027485F /* SearchController.swift */,
@@ -185,6 +196,7 @@
 				5CCDA40628F5A88B00220EC6 /* EskomSchedule.swift in Sources */,
 				5C79E37728F812180027485F /* SearchCell.swift in Sources */,
 				5C79E37428F80F5A0027485F /* SearchController.swift in Sources */,
+				5C79E37B28F8357B0027485F /* DatabaseHandler.swift in Sources */,
 				5CCDA40828F69FB700220EC6 /* Data.swift in Sources */,
 				5CCDA3F028F5A00700220EC6 /* ViewController.swift in Sources */,
 				5CCDA40A28F6A47D00220EC6 /* DataProvider.swift in Sources */,
