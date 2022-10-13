@@ -17,7 +17,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sb.getAreas(name: "benoni")
+//        sb.getAreas(name: "benoni")
+        dp.parseSchedule()
 //        loadData()
 //        dp.parseSchedule()
         

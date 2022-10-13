@@ -29,7 +29,7 @@ class SearchController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dp.areaSearch?.areas.count ?? 2
+        return dp.areaSearch?.areas.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,9 +43,10 @@ class SearchController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = dp.areaSearch?.areas[tableView.indexPathForSelectedRow!.row]
-//        dbh.addArea()
-        print(data?.id)
-        print(data?.name)
-        print(data?.region)
+        
+        if let aID = data?.id, let aName = data?.name, let aRegion = data?.region {
+            dbh.addArea(areaID: aID, areaName: aName, areaRegion: aRegion)
+        }
+        
     }
 }

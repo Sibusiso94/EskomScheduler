@@ -11,7 +11,7 @@ import UIKit
 
 class DatabaseHandler {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var area = [DBArea]()
+    var areas = [DBArea]()
     
     func saveData() {
         
@@ -34,7 +34,16 @@ class DatabaseHandler {
         
     }
     
-    func loadAreas() {
+    func loadAreas() -> [DBArea] {
+        let request: NSFetchRequest<DBArea> = DBArea.fetchRequest()
         
+//        request.predicate = NSPredicate(format: "taskArchived == 0 && taskIsDone == 0")
+        do {
+            areas = try context.fetch(request)
+            return areas
+        } catch {
+            print("Error fetching tasks: \(error)")
+            return areas
+        }
     }
 }

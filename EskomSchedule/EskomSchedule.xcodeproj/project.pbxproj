@@ -22,8 +22,6 @@
 		5CCDA40628F5A88B00220EC6 /* EskomSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA40528F5A88B00220EC6 /* EskomSchedule.swift */; };
 		5CCDA40828F69FB700220EC6 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA40728F69FB700220EC6 /* Data.swift */; };
 		5CCDA40A28F6A47D00220EC6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA40928F6A47D00220EC6 /* DataProvider.swift */; };
-		5CCDA40C28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDA40B28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json */; };
-		5CCDA40E28F6C30700220EC6 /* JSONData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDA40D28F6C30700220EC6 /* JSONData.json */; };
 		5CCDA41028F6FDE700220EC6 /* ScheduleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA40F28F6FDE700220EC6 /* ScheduleBuilder.swift */; };
 		B8F12F8228F81F00001DA1D3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F12F8128F81F00001DA1D3 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,8 +44,6 @@
 		5CCDA40528F5A88B00220EC6 /* EskomSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EskomSchedule.swift; sourceTree = "<group>"; };
 		5CCDA40728F69FB700220EC6 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5CCDA40928F6A47D00220EC6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
-		5CCDA40B28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "EskomSePush Business API 2.0.postman_collection.json"; sourceTree = "<group>"; };
-		5CCDA40D28F6C30700220EC6 /* JSONData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONData.json; sourceTree = "<group>"; };
 		5CCDA40F28F6FDE700220EC6 /* ScheduleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBuilder.swift; sourceTree = "<group>"; };
 		B8F12F8128F81F00001DA1D3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,8 +99,6 @@
 				5CCDA3F928F5A00900220EC6 /* LaunchScreen.storyboard */,
 				5CCDA3FC28F5A00900220EC6 /* Info.plist */,
 				5CCDA40728F69FB700220EC6 /* Data.swift */,
-				5CCDA40B28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json */,
-				5CCDA40D28F6C30700220EC6 /* JSONData.json */,
 				5CCDA40F28F6FDE700220EC6 /* ScheduleBuilder.swift */,
 				5C79E37328F80F5A0027485F /* SearchController.swift */,
 				5C79E37528F812180027485F /* SearchCell.swift */,
@@ -180,12 +174,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CCDA40C28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json in Resources */,
 				5CCDA3FB28F5A00900220EC6 /* LaunchScreen.storyboard in Resources */,
 				5CCDA3F828F5A00900220EC6 /* Assets.xcassets in Resources */,
 				5C79E37828F812180027485F /* SearchCell.xib in Resources */,
 				5CCDA3F328F5A00700220EC6 /* Main.storyboard in Resources */,
-				5CCDA40E28F6C30700220EC6 /* JSONData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
