@@ -24,6 +24,7 @@
 		5CCDA40C28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDA40B28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json */; };
 		5CCDA40E28F6C30700220EC6 /* JSONData.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDA40D28F6C30700220EC6 /* JSONData.json */; };
 		5CCDA41028F6FDE700220EC6 /* ScheduleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA40F28F6FDE700220EC6 /* ScheduleBuilder.swift */; };
+		B8F12F8228F81F00001DA1D3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F12F8128F81F00001DA1D3 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		5CCDA40B28F6C10F00220EC6 /* EskomSePush Business API 2.0.postman_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "EskomSePush Business API 2.0.postman_collection.json"; sourceTree = "<group>"; };
 		5CCDA40D28F6C30700220EC6 /* JSONData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONData.json; sourceTree = "<group>"; };
 		5CCDA40F28F6FDE700220EC6 /* ScheduleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBuilder.swift; sourceTree = "<group>"; };
+		B8F12F8128F81F00001DA1D3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				5CCDA3ED28F5A00700220EC6 /* SceneDelegate.swift */,
 				5CCDA3EF28F5A00700220EC6 /* ViewController.swift */,
 				5CCDA3F128F5A00700220EC6 /* Main.storyboard */,
+				B8F12F8128F81F00001DA1D3 /* MapViewController.swift */,
 				5CCDA3F728F5A00900220EC6 /* Assets.xcassets */,
 				5CCDA3F928F5A00900220EC6 /* LaunchScreen.storyboard */,
 				5CCDA3FC28F5A00900220EC6 /* Info.plist */,
@@ -189,6 +192,7 @@
 				5CCDA3F028F5A00700220EC6 /* ViewController.swift in Sources */,
 				5CCDA40A28F6A47D00220EC6 /* DataProvider.swift in Sources */,
 				5CCDA41028F6FDE700220EC6 /* ScheduleBuilder.swift in Sources */,
+				B8F12F8228F81F00001DA1D3 /* MapViewController.swift in Sources */,
 				5CCDA3EC28F5A00700220EC6 /* AppDelegate.swift in Sources */,
 				5CCDA3F628F5A00700220EC6 /* EskomSchedule.xcdatamodeld in Sources */,
 				5C79E37228F7F30A0027485F /* AreaSearch.swift in Sources */,

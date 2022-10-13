@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f84-DY-pZr">
-                                <rect key="frame" x="-1" y="47" width="391" height="44"/>
+                                <rect key="frame" x="-2" y="47" width="391" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -57,7 +57,7 @@
         <!--Map View-->
         <scene sceneID="ROb-xH-fMl">
             <objects>
-                <viewController id="Cw9-Qj-l4J" customClass="ViewController" customModule="EskomSchedule" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Cw9-Qj-l4J" customClass="MapViewController" customModule="EskomSchedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="val-37-amZ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
