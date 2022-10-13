@@ -15,9 +15,9 @@ struct EskomSchedule: Codable {
 
 // MARK: - Event
 struct Event: Codable {
-    let end: Date
+    let end: String
     let note: String
-    let start: Date
+    let start: String
 }
 
 // MARK: - Info

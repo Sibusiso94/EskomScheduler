@@ -8,78 +8,73 @@
 import Foundation
 import UIKit
 
-struct DataProvider {
+class DataProvider {
     
     var schedule: EskomSchedule? = nil
+    var areaSearch: AreaSearch? = nil
     let tokenString = "yoqhWx01QSnV5gr9bpUg"
     
-    func parseJSON(getFood:String, completion: @escaping () -> ()) {
+    func parseArea(areaName: String) -> [Area] {
+//        let trimmedUrl = getFood.trimmingCharacters(in: .whitespacesAndNewlines)
+        let urlArea = "https://developer.sepush.co.za/business/2.0/areas_search?text=benoni"
+        var areaID: [Area] = []
+        
+        guard let url = URL(string: urlArea) else {
+            fatalError("Invalid URL")
+        }
 
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(tokenString, forHTTPHeaderField: "token")
+//        request.addValue("esp_token \(tokenString)", forHTTPHeaderField: "Authorization")
 
-        let trimmedUrl = getFood.trimmingCharacters(in: .whitespacesAndNewlines)
+        URLSession.shared.dataTask(with: request) { data, response, error in
 
-
-        var request = URLRequest(url: URL(string: "https://developer.sepush.co.za/business/2.0")!)
-        request.addValue("esp_token \(tokenString)", forHTTPHeaderField: "Authorization")
-
-        URLSession.shared.dataTask(with: request) { [self] data, response, error in
-
-            if error == nil {
+            guard let data = data else { return }
                 do {
-                    schedule = try JSONDecoder().decode(EskomSchedule.self, from: data!)
+                    let decodedData = try JSONDecoder().decode(AreaSearch.self, from: data)
                     
                     DispatchQueue.main.async {
-                        completion()
+                        for area in decodedData.areas {
+                            areaID.append(area)
+                        }
+                        print(areaID)
                     }
                 } catch {
                     print("Error fetching data: \(error)")
                 }
-            }
+            
         }.resume()
+        return areaID
     }
     
-//    func readLocalFile(forName name: String) -> Data? {
-//        do {
-//            if let bundlePath = Bundle.main.path(forResource: name,
-//                                                 ofType: "json"),
-//                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
-//                print(jsonData.description)
-//                return jsonData
-//            }
-//        } catch {
-//            print(error)
-//        }
-//
-//        return nil
-//    }
-//
-//    func parse(jsonData: Data) {
-//        do {
-//            let decodedData = try JSONDecoder().decode(EskomSchedule.self,
-//                                                       from: jsonData)
-//
-//            print("Title: ", decodedData.events)
-//            print("Description: ", decodedData.schedule)
-//            print("===================================")
-//        } catch {
-//            print("decode error")
-//        }
-//    }
-    
-//    func loadJson(fromURLString urlString: String,
-//                          completion: @escaping (Result<Data, Error>) -> Void) {
-//        if let url = URL(string: urlString) {
-//            let urlSession = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
-//                if let error = error {
-//                    completion(.failure(error))
-//                }
-//                
-//                if let data = data {
-//                    completion(.success(data))
-//                }
-//            }
-//            
-//            urlSession.resume()
-//        }
-//    }
+    func parseSchedule() {
+        
+        let urlScheduleInfo = "https://developer.sepush.co.za/business/2.0/area?id=eskde-10-fourwaysext10cityofjohannesburggauteng&test=current"
+//        var areaID: [Area] = []
+        
+        guard let url = URL(string: urlScheduleInfo) else {
+            fatalError("Invalid URL")
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(tokenString, forHTTPHeaderField: "token")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+
+            guard let data = data else { return }
+                do {
+                    let decodedData = try JSONDecoder().decode(EskomSchedule.self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        print(decodedData)
+                        }
+//                        print(areaID)
+                } catch {
+                    print("Error fetching data: \(error)")
+                }
+            
+        }.resume()
+    }
 }
