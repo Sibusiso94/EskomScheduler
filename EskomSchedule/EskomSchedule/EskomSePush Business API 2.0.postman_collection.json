@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "c345ec36-8f77-432c-aefa-5e17eb68d176",
+		"name": "EskomSePush Business API 2.0",
+		"description": "# Features\n\n\\* Real time status for National Loadshedding  \n\\* Real time status per Area, Upcoming Events & Schedule  \n\\* Areas Search by Text  \n\\* Areas Nearby by GPS coordinates  \n\\* User Generated Topics by approx GPS location\n\n### Schedule issue or something missing ?\n\nMake sure you have the correct Area ID (using Area Nearby or Area Search); GPS based search is preferred as these are areas that EskomSePush users in that area are already using.\n\nIf a schedule has changed please be in contact with us to update it. Even better; help us update it (and earn some personal quota).\n\n# Business Users\n\n\\* You are governed by the terms in the MSA\n\n# Personal Users\n\n\\* By using this API you agree to all terms and conditions.  \n\\* This is invite only, and you can get removed at any time  \n\\* This API can change at any moment. We'll try to alert you to big changes  \n\\* **Use any data at your own risk, we take no responsibility for any inaccuracies or errors.**\n\n**Warnings**\n\n\\* Each Token is allocated a Quota (typically Daily usage); once this usage has been exceeded; requests will be blocked until quota is available  \n\\* Do not share your Token  \n\\* You should only be doing requests from a single IP (not multiple simultaneously)  \n\\* Each individual must have their own Token linked to a valid email address  \n\\* You cannot build a competing product to EskomSePush/AskMyStreet with this API (Got a cool idea? Let's chat!)\n\n**Where do I get a Token**\n\n\\* Someone at EskomSePush will email your Token to you\n\n**My Token has stopped working**\n\n\\* If we detect malicious behaviour or anything we deem to be untoward we will disable a personal Token without notice or warning  \n\\* You can email \"personal_support at sepush co za\" for best effort & low priority support  \n\\* We track usage in real-time and also long term\n\n**What is an API / how do I use this / what is a Header / where do I input the Token / why do you want to know about Jason**\n\n\\* Google and/or ask a friend. We unfortunately can't help you right now ...\n\n**Personal Quotas**\n\n\\* Personal API users have a quota, and once this quota is used up in a period (typically daily), requests will be blocked until quota is available again  \n\\* _Status_ & _Area Information_ count for a single request  \n\\* Area Information has a `?test` parameter; which does not count toward your quota. Use it :)  \n\\* _Areas Search_, _Areas Nearby_ & _Topics Nearby_ count as 5 calls toward your request quota  \n\\* These don't need to be called automatically or often  \n\\* The Check Allowance can be called to check your quota used & remaining. This doesn't count against your quota (use respectfully).\n\n# Responses\n\nAll valid responses will have Header `Content-Type: application/json`\n\nIt's important to check the HTTP status code to confirm accuracy of your response before processing it.\n\n| **HTTP Code** | **Description** |\n| --- | --- |\n| 200 | OK |\n| 400 | Bad Request (You sent something bad) |\n| 403 | Not Authenticated (Token Invalid / Disabled) |\n| 404 | Not Found |\n| 429 | Too Many Requests (Token quota exceeded) |\n| 5xx | Server side issue - did you let us know? |\n\n# Authentication\n\nAdd the following HTTP request headers, for all requests against the API.\n\n| **Header** | **Value** |\n| --- | --- |\n| Token | The token you got from us |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22833174"
+	},
+	"item": [
+		{
+			"name": "Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/status",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"status"
+					]
+				},
+				"description": "The current and next loadshedding statuses for South Africa and (Optional) municipal overrides\n\n`eskom` is the National status\n\nOther keys in the `status` refer to different municipalities and potential overrides from the National status; most typically present is the key for `capetown`\n\n**Example response:**\n\n``` json\n{\n    \"status\": {\n        \"capetown\": {\n            \"name\": \"Cape Town\",\n            \"next_stages\": [\n                {\n                    \"stage\": \"1\",\n                    \"stage_start_timestamp\": \"2022-08-08T17:00:00+02:00\"\n                },\n                {\n                    \"stage\": \"0\",\n                    \"stage_start_timestamp\": \"2022-08-08T22:00:00+02:00\"\n                }\n            ],\n            \"stage\": \"0\",\n            \"stage_updated\": \"2022-08-08T00:08:16.837063+02:00\"\n        },\n        \"eskom\": {\n            \"name\": \"National\",\n            \"next_stages\": [\n                {\n                    \"stage\": \"2\",\n                    \"stage_start_timestamp\": \"2022-08-08T16:00:00+02:00\"\n                },\n                {\n                    \"stage\": \"0\",\n                    \"stage_start_timestamp\": \"2022-08-09T00:00:00+02:00\"\n                }\n            ],\n            \"stage\": \"0\",\n            \"stage_updated\": \"2022-08-08T16:12:53.725852+02:00\"\n        }\n    }\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Area Information",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/area?id=eskde-10-fourwaysext10cityofjohannesburggauteng&test=current",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"area"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "eskde-10-fourwaysext10cityofjohannesburggauteng",
+							"description": "Area ID obtained from Nearby or Search"
+						},
+						{
+							"key": "test",
+							"value": "current",
+							"description": "For testing purposes only, set to current or future"
+						}
+					]
+				},
+				"description": "Obtain the `id` from Area Find or Area Search and use with this request. This single request has everything you need to monitor upcoming loadshedding events for the chosen suburb.\n\n*   `name` & `region`\n    *   Self-explanatory\n*   `events`\n    *   A sorted list of events\n    *   `start` & `end` times listing when it will be impacted by loadshedding\n    *   Will be an empty list if not impacted\n*   `schedule`\n    *   Raw loadshedding schedule, per stage (1-8)\n    *   Formatted for display purposes (i.e. `20:00-22:30`)\n    *   Any adjacent events have been merged into a single event (e.g. `12:00-14:30` & `14:00-16:30` become `12:00-16:30`)\n    *   *Note: An empty list means no events for that stage*\n    *   *Note: Some Municipalities/Regions don't have Stage 5-8 schedules (and there will be 4 records instead of 8 in this list. Stage 5 upwards you can assume Stage 4 schedule impact.*\n\n**Testing**\n\nInclude the `&test=current` or `&test=future` to get SAMPLE data returned in the `events`. `current` will return a loadshedding `event` which is occurring right now, and `future` will return an event starting on the next hour.\n\n*NOTE: The schedule returned with testing data is NOT accurate data; but only for testing purposes. The area* *`name`* *and* *`source`* *is updated to identify that this is testing data. This* *`test`* *request will not count towards your quota.*\n\n**Example response**\n\n``` json\n{\n    \"events\": [\n        {\n            \"end\": \"2022-08-08T22:30:00+02:00\",\n            \"note\": \"Stage 2\",\n            \"start\": \"2022-08-08T20:00:00+02:00\"\n        }\n    ],\n    \"info\": {\n        \"name\": \"Sandton-WEST (4)\",\n        \"region\": \"Eskom Direct, City of Johannesburg, Gauteng\"\n    },\n    \"schedule\": {\n        \"days\": [\n            {\n                \"date\": \"2022-08-08\",\n                \"name\": \"Monday\",\n                \"stages\": [\n                    [],\n                    [\n                        \"20:00-22:30\"\n                    ],\n                    [\n                        \"12:00-14:30\",\n                        \"20:00-22:30\"\n                    ],\n                    [\n                        \"04:00-06:30\",\n                        \"12:00-14:30\",\n                        \"20:00-22:30\"\n                    ],\n                    [\n                        \"04:00-06:30\",\n                        \"12:00-14:30\",\n                        \"20:00-22:30\"\n                    ],\n                    [\n                        \"04:00-06:30\",\n                        \"12:00-14:30\",\n                        \"20:00-00:30\"\n                    ],\n                    [\n                        \"04:00-06:30\",\n                        \"12:00-16:30\",\n                        \"20:00-00:30\"\n                    ],\n                    [\n                        \"04:00-08:30\",\n                        \"12:00-16:30\",\n                        \"20:00-00:30\"\n                    ]\n                ]\n            },\n            {\n                \"date\": \"2022-08-09\",\n                \"name\": \"Tuesday\",\n                \"stages\": [\n                    [\n                        \"02:00-04:30\"\n                    ],\n                    [\n                        \"02:00-04:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-12:30\",\n                        \"18:00-22:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-14:30\",\n                        \"18:00-22:30\"\n                    ]\n                ]\n            },\n            {\n                \"date\": \"2022-08-10\",\n                \"name\": \"Wednesday\",\n                \"stages\": [\n                    [\n                        \"10:00-12:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-14:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-14:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-14:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-14:30\",\n                        \"18:00-22:30\"\n                    ]\n                ]\n            },\n            {\n                \"date\": \"2022-08-11\",\n                \"name\": \"Thursday\",\n                \"stages\": [\n                    [\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\",\n                        \"18:00-22:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-14:30\",\n                        \"18:00-22:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-14:30\",\n                        \"18:00-22:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-14:30\",\n                        \"18:00-22:30\"\n                    ]\n                ]\n            },\n            {\n                \"date\": \"2022-08-12\",\n                \"name\": \"Friday\",\n                \"stages\": [\n                    [],\n                    [\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\",\n                        \"18:00-20:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-12:30\",\n                        \"18:00-22:30\"\n                    ],\n                    [\n                        \"02:00-04:30\",\n                        \"10:00-14:30\",\n                        \"18:00-22:30\"\n                    ],\n                    [\n                        \"02:00-06:30\",\n                        \"10:00-14:30\",\n                        \"18:00-22:30\"\n                    ]\n                ]\n            }\n        ],\n        \"source\": \"https://loadshedding.eskom.co.za/\"\n    }\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Areas Nearby (GPS)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/areas_nearby?lat=-26.0269658&lon=28.0137339",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"areas_nearby"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "-26.0269658",
+							"description": "Latitude"
+						},
+						{
+							"key": "lon",
+							"value": "28.0137339",
+							"description": "Longitude"
+						}
+					]
+				},
+				"description": "Find areas based on GPS coordinates (latitude and longitude). These are recommended areas based on EskomSePush users adding locations nearby to those coordinates.\n\nThe first area returned is typically the best choice for the coordinates - as it's the most popular used.\n\n**Example response:**\n\n``` json\n{\n    \"areas\": [\n        {\n            \"count\": 253,\n            \"id\": \"capetown-15-observatory\"\n        },\n        {\n            \"count\": 82,\n            \"id\": \"capetown-15-saltriver\"\n        },\n        {\n            \"count\": 80,\n            \"id\": \"capetown-15-woodstockeast\"\n        },\n        {\n            \"count\": 67,\n            \"id\": \"capetown-15-rondebosch\"\n        },\n        {\n            \"count\": 62,\n            \"id\": \"capetown-7-woodstockwest\"\n        }\n    ]\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Areas Search (Text)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/areas_search?text=fourways",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"areas_search"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "fourways",
+							"description": "String to search for"
+						}
+					]
+				},
+				"description": "Search area based on text\n\n**Example response:**\n\n``` json\n{\n    \"areas\": [\n        {\n            \"id\": \"westerncape-2-stellenboschmunicipality\",\n            \"name\": \"Stellenbosch Municipality (2)\",\n            \"region\": \"Western Cape\"\n        },\n        {\n            \"id\": \"westerncape-8-stellenboschfarmers\",\n            \"name\": \"Stellenbosch farmers (8)\",\n            \"region\": \"Western Cape\"\n        },\n        {\n            \"id\": \"eskomdirect-5215-stellenboschpart1outlyingstellenboschwesterncape\",\n            \"name\": \"Stellenbosch Part 1 Outlying\",\n            \"region\": \"Eskom Direct (Web), Stellenbosch, Western Cape\"\n        },\n        {\n            \"id\": \"eskde-4-stellenboschnucityofcapetownwesterncape\",\n            \"name\": \"Stellenbosch NU (4)\",\n            \"region\": \"Eskom Direct, City of Cape Town, Western Cape\"\n        },\n        {\n            \"id\": \"eskde-4-stellenboschnustellenboschwesterncape\",\n            \"name\": \"Stellenbosch NU (4)\",\n            \"region\": \"Eskom Direct, Stellenbosch, Western Cape\"\n        },\n        {\n            \"id\": \"eskde-8-stellenboschnustellenboschwesterncape\",\n            \"name\": \"Stellenbosch NU (8)\",\n            \"region\": \"Eskom Direct, Stellenbosch, Western Cape\"\n        },\n        {\n            \"id\": \"eskde-15-stellenboschnucityofcapetownwesterncape\",\n            \"name\": \"Stellenbosch NU (15)\",\n            \"region\": \"Eskom Direct, City of Cape Town, Western Cape\"\n        },\n        {\n            \"id\": \"eskde-15-stellenboschnustellenboschwesterncape\",\n            \"name\": \"Stellenbosch NU (15)\",\n            \"region\": \"Eskom Direct, Stellenbosch, Western Cape\"\n        },\n        {\n            \"id\": \"eskde-16-stellenboschmohokarefreestate\",\n            \"name\": \"Stellenbosch (16)\",\n            \"region\": \"Eskom Direct, Mohokare, Free State\"\n        },\n        {\n            \"id\": \"eskde-16-stellenboschnustellenboschwesterncape\",\n            \"name\": \"Stellenbosch NU (16)\",\n            \"region\": \"Eskom Direct, Stellenbosch, Western Cape\"\n        },\n        {\n            \"id\": \"eskde-16-stellengiftdrakensteinwesterncape\",\n            \"name\": \"Stellengift (16)\",\n            \"region\": \"Eskom Direct, Drakenstein, Western Cape\"\n        },\n        {\n            \"id\": \"eskdo-5-stellenboschvleibeaufortwestwesterncape\",\n            \"name\": \"Stellenboschvlei (5)\",\n            \"region\": \"Eskom Direct, Beaufort West, Western Cape\"\n        },\n        {\n            \"id\": \"eskdo-9-stellenhofsundaysrivervalleyeasterncape\",\n            \"name\": \"Stellenhof (9)\",\n            \"region\": \"Eskom Direct, Sundays River Valley, Eastern Cape\"\n        },\n        {\n            \"id\": \"westerncape-2-universityofstellenbosch\",\n            \"name\": \"University of Stellenbosch (2)\",\n            \"region\": \"Western Cape\"\n        }\n    ]\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Topics Nearby",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/topics_nearby?lat=-26.0269658&lon=28.0137339",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"topics_nearby"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "-26.0269658",
+							"description": "Latitude"
+						},
+						{
+							"key": "lon",
+							"value": "28.0137339",
+							"description": "Longitude"
+						}
+					]
+				},
+				"description": "Find topics created by users based on GPS coordinates (latitude and longitude). Can use this to detect if there is a potential outage/problem nearby.\n\n**Example response:**\n\n``` json\n{\n    \"topics\": [\n        {\n            \"active\": \"2022-08-08T13:02:04.776000+02:00\",\n            \"body\": \"Is anyone else still off in Parkhurst? According to the city power Twitter page electricity has been restored but we’re out on 11th\",\n            \"category\": \"electricity\",\n            \"distance\": 4.83,\n            \"followers\": 1,\n            \"timestamp\": \"2022-08-08T13:02:04.776000+02:00\"\n        },\n        {\n            \"active\": \"2022-08-08T10:08:32.229000+02:00\",\n            \"body\": \"Anyone selling laptops\",\n            \"category\": \"information\",\n            \"distance\": 3.48,\n            \"followers\": 3,\n            \"timestamp\": \"2022-08-07T10:43:25.319000+02:00\"\n        },\n        {\n            \"active\": \"2022-08-08T10:02:52.791000+02:00\",\n            \"body\": \"Hi , if anyone is in need of a dog sitter / baby sitter I am very flexible and able to travel. I live around the  area \\nContact me on  x \\nMy name is \",\n            \"category\": \"information\",\n            \"distance\": 1.8,\n            \"followers\": 3,\n            \"timestamp\": \"2022-08-08T09:48:02.819000+02:00\"\n        }\n    ]\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Check allowance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api_allowance",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api_allowance"
+					]
+				},
+				"description": "Check allowance allocated for token\n\nNOTE: This call doesn't count towards your quota.\n\n**Example response:**\n\n``` json\n{\n    \"allowance\": {\n        \"count\": 39,\n        \"limit\": 50,\n        \"type\": \"daily\"\n    }\n}\n\n```"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "yoqhWx01QSnV5gr9bpUg",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://us-central1-sepush-app.cloudfunctions.net/sepush-serverless-business-api-staging-http/business/2.0",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "URL",
+			"value": "https://developer.sepush.co.za/business/2.0",
+			"type": "string"
+		}
+	]
+}
