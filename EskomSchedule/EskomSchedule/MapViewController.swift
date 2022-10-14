@@ -14,7 +14,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     let initialLocation = CLLocation(latitude: -26.112114859606447, longitude: 28.053238876727022)
     // -26.112114859606447, 28.053238876727022
     
-    //mapView.centerToLocation(initialLocation)
+ let dataProvider = DataProvider()
+   
+    
     
 
     let sourceLocation = CLLocationCoordinate2D(latitude: -26.112114859606447, longitude: 28.053238876727022)
@@ -32,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // Do any additional setup after loading the view.
         
         mapView.delegate = self
-        
+        mapView.centerToLocation(initialLocation)
         //-25.782264252379097, 28.27485353069081
         
        
@@ -44,6 +46,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         
         addPins()
+        dataProvider.parseArea(areaName: "Sandton") {
+            print("Done parsing")
+            print(self.dataProvider.areaSearch?.areas[0].name)
+        }
     }
     
     func addPins(){
@@ -108,7 +114,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
          renderer.lineWidth = 5.0
          return renderer
     }
+    
+    
+  
 }
+
+private extension MKMapView {
+  func centerToLocation(
+    _ location: CLLocation,
+    regionRadius: CLLocationDistance = 5000
+  ) {
+    let coordinateRegion = MKCoordinateRegion(
+      center: location.coordinate,
+      latitudinalMeters: regionRadius,
+      longitudinalMeters: regionRadius)
+    setRegion(coordinateRegion, animated: true)
+  }
+}
+
 
 
 
