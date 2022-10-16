@@ -8,121 +8,70 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController {
     
     let dp = DataProvider()
     let sb = ScheduleBuilder()
-    @IBOutlet weak var mapView: MKMapView!
+    let ch = CalendarHelper()
+    
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var monthLabel: UILabel!
+    
+    var selectedDate = Date()
+    var totalSquares = [String]()
+    
+    var items = ["John", "Thabo", "Sthembiso", "Sibusiso"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        sb.getAreas(name: "benoni")
+        
         dp.parseSchedule()
-//        loadData()
-//        dp.parseSchedule()
+        setMonthView()
+    }
+    
+    func setMonthView() {
         
-//        let initialLocation = CLLocation(latitude: -26.112114859606447, longitude: 28.053238876727022)
-       // -26.112114859606447, 28.053238876727022
+        totalSquares.removeAll()
         
-//        mapView.centerToLocation(initialLocation)
+        let daysInMonth = ch.daysInMonth(date: selectedDate)
+        let firstDayOfMonth = ch.firstOfMonth(date: selectedDate)
+        let startingSpaces = ch.weekDay(date: firstDayOfMonth)
         
+        var count: Int = 1
         
-        // 1.
-//                mapView.delegate = self
-                
-                // 2.
-//                let sourceLocation = CLLocationCoordinate2D(latitude: -26.112114859606447, longitude: 28.053238876727022)
-//                let destinationLocation = CLLocationCoordinate2D(latitude: -25.782264252379097, longitude: 28.27485353069081)
+        while (count <= 42) {
+            if count <= startingSpaces || startingSpaces - 1 > daysInMonth {
+                totalSquares.append("")
+            } else {
+                totalSquares.append(String(count - startingSpaces))
+            }
+            count += 1
+        }
         
-        //-25.782264252379097, 28.27485353069081
-                // 3.
-//                let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-//                let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
-//
-//                // 4.
-//                let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-//                let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-//
-//                // 5.
-//                let sourceAnnotation = MKPointAnnotation()
-//                sourceAnnotation.title = "Times Square"
-//
-//                if let location = sourcePlacemark.location {
-//                    sourceAnnotation.coordinate = location.coordinate
-//                }
-//
-//
-//                let destinationAnnotation = MKPointAnnotation()
-//                destinationAnnotation.title = "Menlyn mall"
-//
-//                if let location = destinationPlacemark.location {
-//                    destinationAnnotation.coordinate = location.coordinate
-//                }
-                
-                // 6.
-//                self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
-                
-                // 7.
-//                let directionRequest = MKDirections.Request()
-//                directionRequest.source = sourceMapItem
-//                directionRequest.destination = destinationMapItem
-//                directionRequest.transportType = .automobile
-                
-                // Calculate the direction
-//                let directions = MKDirections(request: directionRequest)
-                
-                // 8.
-//        directions.calculate {
-//                    (response, error) -> Void in
-//                    
-//                    guard let response = response else {
-//                        if let error = error {
-//                            print("Error: \(error)")
-//                        }
-//                        
-//                        return
-//                    }
-//                    
-//                    let route = response.routes[0]
-//                    self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.aboveRoads)
-//                    
-//                    let rect = route.polyline.boundingMapRect
-//                    self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-//                }
-//    
+        monthLabel.text = ch.monthString(date: selectedDate) + " " + ch.yearString(date: selectedDate)
+//        collectionView.reloadData()
     }
 
-//    func loadData() {
-//        let areaNames = dp.parseArea(areaName: "benoni")
-//        for area in areaNames {
-//            print(area.id)
-//        }
-//    }
+    @IBAction func prevWeekClicked(_ sender: UIButton) {
+        selectedDate = ch.minusMonth(date: selectedDate)
+        setMonthView()
+    }
     
-    
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-            let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = .green
-            renderer.lineWidth = 4.0
-        
-            return renderer
-        }
-
-
+    @IBAction func nextWeekClicked(_ sender: UIButton) {
+        selectedDate = ch.plusMonth(date: selectedDate)
+        setMonthView()
+    }
 }
 
-
-
-private extension MKMapView {
-  func centerToLocation(
-    _ location: CLLocation,
-    regionRadius: CLLocationDistance = 1000
-  ) {
-    let coordinateRegion = MKCoordinateRegion(
-      center: location.coordinate,
-      latitudinalMeters: regionRadius,
-      longitudinalMeters: regionRadius)
-    setRegion(coordinateRegion, animated: true)
-  }
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
+        cell.titleLabel.text = items[indexPath.row]
+        return cell
+    }    
 }

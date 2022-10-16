@@ -23,6 +23,10 @@
 		5CCDA40828F69FB700220EC6 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA40728F69FB700220EC6 /* Data.swift */; };
 		5CCDA40A28F6A47D00220EC6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA40928F6A47D00220EC6 /* DataProvider.swift */; };
 		5CCDA41028F6FDE700220EC6 /* ScheduleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCDA40F28F6FDE700220EC6 /* ScheduleBuilder.swift */; };
+		5CE6662B28F9321B0048A37C /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6662A28F9321B0048A37C /* CalendarCell.swift */; };
+		5CE6662D28F953960048A37C /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6662C28F953960048A37C /* CalendarHelper.swift */; };
+		5CE6662F28F995B90048A37C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6662E28F995B90048A37C /* CollectionViewCell.swift */; };
+		5CE6663128F996200048A37C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE6663028F996200048A37C /* CalendarViewController.swift */; };
 		B8F12F8228F81F00001DA1D3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F12F8128F81F00001DA1D3 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +49,10 @@
 		5CCDA40728F69FB700220EC6 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5CCDA40928F6A47D00220EC6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		5CCDA40F28F6FDE700220EC6 /* ScheduleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBuilder.swift; sourceTree = "<group>"; };
+		5CE6662A28F9321B0048A37C /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		5CE6662C28F953960048A37C /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		5CE6662E28F995B90048A37C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		5CE6663028F996200048A37C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		B8F12F8128F81F00001DA1D3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +101,7 @@
 				5CCDA3EB28F5A00700220EC6 /* AppDelegate.swift */,
 				5CCDA3ED28F5A00700220EC6 /* SceneDelegate.swift */,
 				5CCDA3EF28F5A00700220EC6 /* ViewController.swift */,
+				5CE6662C28F953960048A37C /* CalendarHelper.swift */,
 				5CCDA3F128F5A00700220EC6 /* Main.storyboard */,
 				B8F12F8128F81F00001DA1D3 /* MapViewController.swift */,
 				5CCDA3F728F5A00900220EC6 /* Assets.xcassets */,
@@ -103,6 +112,9 @@
 				5C79E37328F80F5A0027485F /* SearchController.swift */,
 				5C79E37528F812180027485F /* SearchCell.swift */,
 				5C79E37628F812180027485F /* SearchCell.xib */,
+				5CE6662A28F9321B0048A37C /* CalendarCell.swift */,
+				5CE6662E28F995B90048A37C /* CollectionViewCell.swift */,
+				5CE6663028F996200048A37C /* CalendarViewController.swift */,
 			);
 			path = EskomSchedule;
 			sourceTree = "<group>";
@@ -189,13 +201,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CCDA40628F5A88B00220EC6 /* EskomSchedule.swift in Sources */,
+				5CE6662B28F9321B0048A37C /* CalendarCell.swift in Sources */,
+				5CE6663128F996200048A37C /* CalendarViewController.swift in Sources */,
 				5C79E37728F812180027485F /* SearchCell.swift in Sources */,
 				5C79E37428F80F5A0027485F /* SearchController.swift in Sources */,
 				5C79E37B28F8357B0027485F /* DatabaseHandler.swift in Sources */,
 				5CCDA40828F69FB700220EC6 /* Data.swift in Sources */,
+				5CE6662D28F953960048A37C /* CalendarHelper.swift in Sources */,
 				5CCDA3F028F5A00700220EC6 /* ViewController.swift in Sources */,
 				5CCDA40A28F6A47D00220EC6 /* DataProvider.swift in Sources */,
 				5CCDA41028F6FDE700220EC6 /* ScheduleBuilder.swift in Sources */,
+				5CE6662F28F995B90048A37C /* CollectionViewCell.swift in Sources */,
 				B8F12F8228F81F00001DA1D3 /* MapViewController.swift in Sources */,
 				5CCDA3EC28F5A00700220EC6 /* AppDelegate.swift in Sources */,
 				5CCDA3F628F5A00700220EC6 /* EskomSchedule.xcdatamodeld in Sources */,
