@@ -24,4 +24,10 @@ class SearchCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setUp(areaName:String, region:String){
+        
+        titleLable.text = areaName
+        subTitleLabel.text = region
+    }
+    
 }

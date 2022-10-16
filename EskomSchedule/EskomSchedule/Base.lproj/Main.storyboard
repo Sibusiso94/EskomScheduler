@@ -171,12 +171,63 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ekW-WM-lfa"/>
                         <segue destination="Cw9-Qj-l4J" kind="relationship" relationship="viewControllers" id="s23-UD-vrD"/>
-                        <segue destination="ies-Qu-JbF" kind="relationship" relationship="viewControllers" id="acQ-TS-gdQ"/>
+                        <segue destination="b36-iP-Z4Y" kind="relationship" relationship="viewControllers" id="oz4-nz-DAy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Yd-Pd-ThV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1029" y="4"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="woR-8Q-i9d">
+            <objects>
+                <viewController id="b36-iP-Z4Y" customClass="SearchController" customModule="EskomSchedule" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jcs-2y-xoK">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cv8-ol-Uwz">
+                                <rect key="frame" x="16" y="93" width="273" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUe-5G-G4q">
+                                <rect key="frame" x="310" y="94" width="50" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                                <connections>
+                                    <action selector="searchTapped:" destination="b36-iP-Z4Y" eventType="touchUpInside" id="bmi-9S-h4u"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nag-n4-1qO">
+                                <rect key="frame" x="0.0" y="132" width="390" height="629"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="U56-y6-a3X"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nag-n4-1qO" firstAttribute="top" secondItem="Cv8-ol-Uwz" secondAttribute="bottom" constant="5" id="6ch-jd-TIw"/>
+                            <constraint firstItem="U56-y6-a3X" firstAttribute="trailing" secondItem="qUe-5G-G4q" secondAttribute="trailing" constant="30" id="8bS-8d-3Zh"/>
+                            <constraint firstItem="qUe-5G-G4q" firstAttribute="top" secondItem="U56-y6-a3X" secondAttribute="top" constant="47" id="BC5-LP-LqB"/>
+                            <constraint firstItem="Cv8-ol-Uwz" firstAttribute="leading" secondItem="U56-y6-a3X" secondAttribute="leading" constant="16" id="D5x-7L-qXE"/>
+                            <constraint firstItem="Cv8-ol-Uwz" firstAttribute="top" secondItem="U56-y6-a3X" secondAttribute="top" constant="46" id="Phx-z3-luL"/>
+                            <constraint firstItem="qUe-5G-G4q" firstAttribute="leading" secondItem="Cv8-ol-Uwz" secondAttribute="trailing" constant="21" id="U9r-1e-H9u"/>
+                            <constraint firstItem="U56-y6-a3X" firstAttribute="trailing" secondItem="nag-n4-1qO" secondAttribute="trailing" id="VZW-I1-X7f"/>
+                            <constraint firstItem="nag-n4-1qO" firstAttribute="leading" secondItem="U56-y6-a3X" secondAttribute="leading" id="jSQ-5U-eUq"/>
+                            <constraint firstItem="U56-y6-a3X" firstAttribute="bottom" secondItem="nag-n4-1qO" secondAttribute="bottom" id="qRD-Ok-Fqk"/>
+                            <constraint firstItem="qUe-5G-G4q" firstAttribute="leading" secondItem="Cv8-ol-Uwz" secondAttribute="trailing" constant="21" id="ycO-lo-H37"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle" catalog="system" id="oU2-Cm-7eX"/>
+                    <connections>
+                        <outlet property="searchText" destination="Cv8-ol-Uwz" id="fLC-Ig-v31"/>
+                        <outlet property="tableView" destination="nag-n4-1qO" id="IfE-5h-MYL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="unU-fS-shF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1030.7692307692307" y="-666.11374407582935"/>
         </scene>
         <!--Search-->
         <scene sceneID="wZN-II-0q8">
@@ -233,6 +284,7 @@
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="house.circle" catalog="system" width="128" height="123"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
         <image name="map.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
