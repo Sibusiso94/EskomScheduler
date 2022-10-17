@@ -55,6 +55,17 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
             dbh.addArea(areaID: aID, areaName: aName, areaRegion: aRegion)
         }
         
+        dp.parseSchedule(areaID: data!.id)
+        print(dp.schedule)
+        
+        performSegue(withIdentifier: "showSchedule", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as? ScheduleViewController
+        
+        vc?.schedule = dp.schedule
     }
     
     

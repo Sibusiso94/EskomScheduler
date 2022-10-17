@@ -47,9 +47,9 @@ class DataProvider {
         }.resume()
     }
     
-    func parseSchedule() {
+    func parseSchedule(areaID:String) {
         
-        let urlScheduleInfo = "https://developer.sepush.co.za/business/2.0/area?id=ekurhuleni3-16-benonicbd&test=current"
+        let urlScheduleInfo = "https://developer.sepush.co.za/business/2.0/area?id=\(areaID)&test=current"
 //        var areaID: [Area] = []
         
         guard let url = URL(string: urlScheduleInfo) else {

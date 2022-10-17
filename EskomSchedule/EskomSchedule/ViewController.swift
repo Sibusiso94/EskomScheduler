@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dp.parseSchedule()
+        //dp.parseSchedule()
         setMonthView()
         
         collectionView.collectionViewLayout = createLayout()
