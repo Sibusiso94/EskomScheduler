@@ -21,13 +21,31 @@ class ViewController: UIViewController {
     var selectedDate = Date()
     var totalSquares = [String]()
     
-    var items = ["John", "Thabo", "Sthembiso", "Sibusiso"]
+    var items = ["1", "2", "3", "4", "5", "6", "7"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dp.parseSchedule()
         setMonthView()
+        
+        collectionView.collectionViewLayout = createLayout()
+    }
+    
+    func createLayout() -> UICollectionViewCompositionalLayout {
+        // item
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(55), heightDimension: .absolute(50)))
+        
+        item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
+        
+        // group
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.1)), repeatingSubitem: item, count: 7)
+        
+        // section
+        let section = NSCollectionLayoutSection(group: group)
+        
+        //return
+        return UICollectionViewCompositionalLayout(section: section)
     }
     
     func setMonthView() {
