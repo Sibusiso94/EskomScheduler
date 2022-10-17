@@ -65,7 +65,8 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as? ScheduleViewController
         
-        vc?.schedule = dp.schedule
+        vc?.area = dp.areaSearch?.areas[tableView.indexPathForSelectedRow!.row]
+        
     }
     
     

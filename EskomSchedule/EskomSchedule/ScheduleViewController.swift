@@ -12,12 +12,20 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var scheduleText: UITextView!
     
     var schedule: EskomSchedule? = nil
+    var area:Area?
+    
     var dataProvider = DataProvider()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataProvider.parseSchedule(areaID: area!.id)
 
         scheduleText.text = "Schedule: \n\(dataProvider.schedule!)"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        dp.parseSchedule(areaID: area!.id)
     }
     
 
