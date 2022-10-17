@@ -47,7 +47,7 @@ class DataProvider {
         }.resume()
     }
     
-    func parseSchedule() {
+    func parseSchedule(completion: @escaping () -> ()) {
         
         let urlScheduleInfo = "https://developer.sepush.co.za/business/2.0/area?id=ekurhuleni3-16-benonicbd&test=current"
 //        var areaID: [Area] = []
@@ -68,8 +68,8 @@ class DataProvider {
                     
                     DispatchQueue.main.async {
                         print(decodedData)
+                        completion()
                         }
-//                        print(areaID)
                 } catch {
                     print("Error fetching data: \(error)")
                 }

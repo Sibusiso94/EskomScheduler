@@ -94,7 +94,7 @@
                                 </constraints>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kt8-2G-s0C">
-                                <rect key="frame" x="0.0" y="172" width="390" height="589"/>
+                                <rect key="frame" x="0.0" y="172" width="390" height="136"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gra-11-wCM">
                                     <size key="itemSize" width="128" height="128"/>
@@ -132,6 +132,14 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Vv2-2t-1c1"/>
                                 </connections>
                             </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ac3-xc-y5g">
+                                <rect key="frame" x="0.0" y="313" width="390" height="448"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="3jt-fO-733"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Qet-TJ-sN8"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -139,26 +147,31 @@
                             <constraint firstItem="kt8-2G-s0C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0wy-8D-4Qg"/>
                             <constraint firstItem="n0C-r9-6es" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1K5-xT-cOZ"/>
                             <constraint firstItem="D4p-zO-J1K" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1il-yl-o6e"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kt8-2G-s0C" secondAttribute="bottom" constant="453" id="6J7-Ry-Vyb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hX9-KX-MLl" secondAttribute="trailing" id="7Te-VG-vVK"/>
                             <constraint firstItem="n0C-r9-6es" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="19" id="8RQ-W5-Gtb"/>
+                            <constraint firstItem="ac3-xc-y5g" firstAttribute="top" secondItem="kt8-2G-s0C" secondAttribute="bottom" constant="5" id="9pf-GN-gzs"/>
                             <constraint firstItem="hX9-KX-MLl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="19" id="An3-Ex-p1V"/>
-                            <constraint firstItem="kt8-2G-s0C" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="BEc-4y-6Vl"/>
                             <constraint firstItem="kt8-2G-s0C" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GL6-Yh-Ges"/>
                             <constraint firstItem="axn-vn-XpG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ibq-WU-D70"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="D4p-zO-J1K" secondAttribute="bottom" constant="594" id="OOX-xz-AZt"/>
                             <constraint firstItem="hX9-KX-MLl" firstAttribute="leading" secondItem="n0C-r9-6es" secondAttribute="trailing" constant="5" id="RZK-e3-hCO"/>
+                            <constraint firstItem="ac3-xc-y5g" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UkH-P1-LWX"/>
                             <constraint firstItem="D4p-zO-J1K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="W9T-Wh-H44"/>
                             <constraint firstItem="axn-vn-XpG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZS1-GX-0yG"/>
                             <constraint firstItem="kt8-2G-s0C" firstAttribute="top" secondItem="D4p-zO-J1K" secondAttribute="bottom" constant="5" id="aob-H6-T2g"/>
                             <constraint firstItem="hX9-KX-MLl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gzF-yv-epw"/>
+                            <constraint firstItem="ac3-xc-y5g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hTD-Fc-AiN"/>
                             <constraint firstItem="n0C-r9-6es" firstAttribute="leading" secondItem="axn-vn-XpG" secondAttribute="trailing" constant="5" id="iHb-xb-Txu"/>
                             <constraint firstItem="axn-vn-XpG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="19" id="mWN-Ki-xol"/>
+                            <constraint firstItem="ac3-xc-y5g" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="s54-28-ozc"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Areas" image="house.circle" catalog="system" id="pRi-Zq-aDc"/>
                     <connections>
                         <outlet property="collectionView" destination="kt8-2G-s0C" id="ZE1-UN-PfW"/>
                         <outlet property="monthLabel" destination="n0C-r9-6es" id="yJV-44-YEx"/>
+                        <outlet property="tableView" destination="ac3-xc-y5g" id="4ad-rE-GAb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
